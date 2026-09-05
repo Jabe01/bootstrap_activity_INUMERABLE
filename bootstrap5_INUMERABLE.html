@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap Manual Coding</title>
+<link rel="stylesheet" href="bootstrap5/css/bootstrap.min.css">
+<script src="bootstrap5/js/bootstrap.bundle.min.js"></script>
+<style>
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { margin: 0; padding-top: 70px; overflow-x: hidden; }
+  header[id] { scroll-margin-top: 70px; }
+  .navbar { height: 70px; display: flex; align-items: center; }
+  .feature-card { transition: transform .25s ease, box-shadow .25s ease; }
+  .feature-card:hover { transform: translateY(-8px); box-shadow: 0 1rem 2rem rgba(0,0,0,.15); }
+  .pricing-card { position: relative; }
+  .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); }
+  .check-icon { color: #0d6efd; }
+  .x-icon { color: #adb5bd; }
+  .review-arrow {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #adb5bd; color: #fff; border: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; opacity: 1;
+  }
+  .review-arrow:hover { background: #868e96; }
+  .carousel-control-prev, .carousel-control-next { width: auto; top: 50%; transform: translateY(-50%); bottom: auto; }
+
+  /* Theme toggle button */
+  #themeToggle {
+    width: 36px; height: 36px; border: 1px solid #ced4da; border-radius: 50%;
+    background: transparent; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; cursor: pointer;
+  }
+
+  /* Dark mode overrides */
+  [data-bs-theme="dark"] body { background-color: #1a1d21; color: #e9ecef; }
+  [data-bs-theme="dark"] .navbar.bg-light { background-color: #1a1d21 !important; }
+  [data-bs-theme="dark"] header.bg-light { background-color: #24272b !important; }
+  [data-bs-theme="dark"] header.bg-white { background-color: #1a1d21 !important; }
+  [data-bs-theme="dark"] .text-dark { color: #e9ecef !important; }
+  [data-bs-theme="dark"] .text-secondary { color: #adb5bd !important; }
+  [data-bs-theme="dark"] .text-muted { color: #8a8f98 !important; }
+  [data-bs-theme="dark"] .nav-link { color: #e9ecef !important; }
+  [data-bs-theme="dark"] .card { background-color: #1f2226; border-color: #343a40; color: #e9ecef; }
+  [data-bs-theme="dark"] .card.border-primary { border-color: #0d6efd !important; }
+  [data-bs-theme="dark"] .form-control { background-color: #1f2226; color: #e9ecef; border-color: #495057; }
+  [data-bs-theme="dark"] .form-control::placeholder { color: #6c757d; }
+  [data-bs-theme="dark"] .form-label { color: #e9ecef; }
+  [data-bs-theme="dark"] footer.bg-light { background-color: #24272b !important; }
+  [data-bs-theme="dark"] #themeToggle { border-color: #495057; color: #e9ecef; }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand text-primary fw-bold d-inline-flex align-items-center" href="#home">
+      <span class="d-inline-flex align-items-center justify-content-center bg-primary text-white rounded me-2" style="width:24px;height:24px;font-size:0.85rem;">B</span>
+      Bootstrap5 Website
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reviews">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <button id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="home" class="bg-primary text-white py-5">
+  <div class="container text-center">
+    <div class="col-md-10 col-lg-6 mx-auto">
+      <span class="badge bg-white text-primary rounded-pill p-2 mb-3">Version 5.3.8</span>
+      <h1 class="display-4 fw-bold">Build fast, responsive sites with Bootstrap</h1>
+      <p class="lead my-4">Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components, and bring projects to life with powerful JavaScript plugins.</p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <a class="btn btn-light btn-lg fw-semibold" href="#" role="button">Get Started</a>
+        <a class="btn btn-outline-light btn-lg" href="https://github.com/twbs/bootstrap/releases/download/v5.3.8/bootstrap-5.3.8-dist.zip" role="button">Download Bootstrap 5.3.8</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Features -->
+<header id="features" class="bg-light text-dark py-5">
+  <div class="container text-center mb-4">
+    <h1 class="fw-bold" style="font-size:2.5rem;">Powerful Features</h1>
+    <p class="lead my-1">Designed to give you full control over your layout and functionality.</p>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold">Dark Mode Ready</h4>
+            <p class="card-text text-secondary">Built-in theme switcher using Bootstrap 5's native data-bs-theme attribute.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold">100% Mobile First</h4>
+            <p class="card-text text-secondary">Fully fluid layout engineered to scale down seamlessly to mobile screens.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 feature-card">
+          <div class="card-body p-4">
+            <h4 class="card-title fw-bold">Interactive UI</h4>
+            <p class="card-text text-secondary">Includes dynamic feedback toasts, sliders, and form validation logic.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Pricing -->
+<header id="pricing" class="bg-white text-dark py-5">
+  <div class="container text-center mb-4">
+    <h1 class="fw-bold" style="font-size:2.5rem;">Flexible Pricing</h1>
+    <p class="lead my-1">Choose the plan that fits your business needs.</p>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 feature-card text-start pricing-card">
+          <div class="card-body p-4">
+            <h5 class="text-secondary fw-bold mb-3">Starter</h5>
+            <h2 class="fw-bold mb-3">₱0.00 <span class="fs-6 text-secondary fw-normal">/mo</span></h2>
+            <ul class="list-unstyled text-secondary mb-4">
+              <li class="mb-2"><span class="check-icon">✓</span> 1 Project</li>
+              <li class="mb-2"><span class="check-icon">✓</span> Community Support</li>
+              <li class="mb-2"><span class="x-icon">✕</span> Custom Domain</li>
+            </ul>
+            <button type="button" class="btn btn-outline-primary w-100 rounded-3 fw-semibold py-2">Sign Up Free</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-primary shadow-sm rounded-4 feature-card text-start pricing-card">
+          <span class="badge bg-primary rounded-pill px-3 py-2 popular-badge">Most Popular</span>
+          <div class="card-body p-4">
+            <h5 class="text-primary fw-bold mb-3">Pro Developer</h5>
+            <h2 class="fw-bold mb-3">₱49.00 <span class="fs-6 text-secondary fw-normal">/mo</span></h2>
+            <ul class="list-unstyled text-secondary mb-4">
+              <li class="mb-2"><span class="check-icon">✓</span> Unlimited Projects</li>
+              <li class="mb-2"><span class="check-icon">✓</span> Priority Support</li>
+              <li class="mb-2"><span class="check-icon">✓</span> Custom Domain</li>
+            </ul>
+            <button type="button" class="btn btn-primary w-100 rounded-3 fw-semibold py-2">Get Started Pro</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 feature-card text-start pricing-card">
+          <div class="card-body p-4">
+            <h5 class="text-secondary fw-bold mb-3">Enterprise</h5>
+            <h2 class="fw-bold mb-3">₱109.00 <span class="fs-6 text-secondary fw-normal">/mo</span></h2>
+            <ul class="list-unstyled text-secondary mb-4">
+              <li class="mb-2"><span class="check-icon">✓</span> Dedicated Server</li>
+              <li class="mb-2"><span class="check-icon">✓</span> 24/7 Phone Support</li>
+              <li class="mb-2"><span class="check-icon">✓</span> SLA Guarantee</li>
+            </ul>
+            <button type="button" class="btn btn-outline-primary w-100 rounded-3 fw-semibold py-2">Contact Sales</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Reviews -->
+<header id="reviews" class="bg-light text-dark py-5">
+  <div class="container text-center mb-4">
+    <h1 class="fw-bold" style="font-size:2.5rem;">What People Say</h1>
+    <p class="lead my-1">Trusted by developers building real projects.</p>
+  </div>
+  <div class="container-fluid position-relative px-5" style="padding-top: 1rem; padding-bottom: 1rem;">
+    <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+          <p class="fs-5 text-secondary mb-3">"The dark mode toggle integration works like a charm. Extremely clean markup!"</p>
+          <h6 class="fw-bold mb-1">Harrold Evangelista, BSIT-Business Analytics Track</h6>
+          <p class="text-muted small mb-0">UI/UX Designer</p>
+        </div>
+        <div class="carousel-item">
+          <p class="fs-5 text-secondary mb-3">"This Bootstrap starter layout completely sped up my client workflow. Highly recommended!"</p>
+          <h6 class="fw-bold mb-1">Calvin Placio, BSIT-Network Technology Track</h6>
+          <p class="text-muted small mb-0">Lead Developer, Code-Smart Solutions</p>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+        <span class="review-arrow">&#10094;</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+        <span class="review-arrow">&#10095;</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Contact -->
+<header id="contact" class="bg-white text-dark py-5">
+  <div class="container text-center">
+    <h1 class="fw-bold" style="font-size:2.5rem;">Get In Touch</h1>
+    <p class="lead my-1 mb-4">Fill out the form below to send us a live message.</p>
+    <form class="col-md-8 mx-auto text-start" onsubmit="event.preventDefault(); document.getElementById('home').scrollIntoView({behavior:'smooth'}); return false;">
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" placeholder="you@example.com">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea class="form-control" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Submit Form</button>
+    </form>
+  </div>
+</header>
+
+<!-- Footer -->
+<footer class="bg-light text-center py-4">
+  <div class="d-flex justify-content-center gap-3 mb-2">
+    <a href="#" class="text-dark" aria-label="Facebook">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+      </svg>
+    </a>
+    <a href="#" class="text-dark" aria-label="X">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+      </svg>
+    </a>
+    <a href="#" class="text-dark" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+      </svg>
+    </a>
+  </div>
+  <p class="text-muted small mb-0">&copy; 2026 Mark Jay. Built with Bootstrap 5.3.</p>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const moon = document.getElementById('moonIcon');
+    const sun = document.getElementById('sunIcon');
+    if (html.getAttribute('data-bs-theme') === 'dark') {
+      html.setAttribute('data-bs-theme', 'light');
+      moon.classList.remove('d-none');
+      sun.classList.add('d-none');
+    } else {
+      html.setAttribute('data-bs-theme', 'dark');
+      sun.classList.remove('d-none');
+      moon.classList.add('d-none');
+    }
+  }
+</script>
+
+</body>
+</html>
